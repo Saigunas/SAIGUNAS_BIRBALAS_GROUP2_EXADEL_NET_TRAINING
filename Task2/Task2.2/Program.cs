@@ -3,7 +3,7 @@
 public class Program
 {
 
-    const int maxFileLength = 300;
+    private const int _maxFileLength = 300;
 
     public static void Main(string[] args)
     {
@@ -15,7 +15,7 @@ public class Program
         List<string> changedFileList = new List<string>();
 
         var program = new Program();
-        changedFileList = program.modifyList(fileList);
+        changedFileList = program.ModifyList(fileList);
 
         string path = "..\\..\\..\\output.txt";
         File.WriteAllText(path, String.Empty);
@@ -28,7 +28,7 @@ public class Program
     }
 
 
-    List<string> modifyList(List<string> fileList)
+    List<string> ModifyList(List<string> fileList)
     {
         List<string> changedFileList = new List<string>();
 
@@ -37,10 +37,10 @@ public class Program
             string itemToChange = fileList[i];
 
             //Everything is applied separately for the sake of readability and easier modification.
-            itemToChange = applyLengthLimit(itemToChange);
-            itemToChange = reverseString(itemToChange);
-            itemToChange = sortWordByUpperCase(itemToChange);
-            itemToChange = filterString(itemToChange);
+            itemToChange = ApplyLengthLimit(itemToChange);
+            itemToChange = ReverseString(itemToChange);
+            itemToChange = SortWordByUpperCase(itemToChange);
+            itemToChange = FilterString(itemToChange);
 
 
             changedFileList.Add(itemToChange);
@@ -51,7 +51,7 @@ public class Program
         return changedFileList;
     }
 
-    string filterString(string toFilter)
+    string FilterString(string toFilter)
     {
         char[] characters = toFilter.ToArray();
 
@@ -64,7 +64,7 @@ public class Program
         return filteredString;
     }
 
-    string sortWordByUpperCase(string toSort)
+    string SortWordByUpperCase(string toSort)
     {
 
         List<string> words = new List<string>();
@@ -83,7 +83,7 @@ public class Program
         return sortedString;
     }
 
-    string reverseString(string toReverse)
+    string ReverseString(string toReverse)
     {
         char[] characters = toReverse.ToArray();
         
@@ -93,11 +93,11 @@ public class Program
         return reversedString;
     }
 
-    string applyLengthLimit(string toLimit)
+    string ApplyLengthLimit(string toLimit)
     {
         if (toLimit.Length > 300)
         {
-            toLimit = toLimit.Substring(0, maxFileLength);
+            toLimit = toLimit.Substring(0, _maxFileLength);
         }
         return toLimit;
     }
