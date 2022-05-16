@@ -4,7 +4,6 @@ public class Program
 {
     public static void Main(string[] args)
     {
-
         char[] alphabetEn = "abcdefghijklmnopqrstuvwxyz".ToCharArray();
 
         Dictionary<char, LinkedList<string>> namesDictionary =
@@ -15,8 +14,6 @@ public class Program
             namesDictionary.Add(alphabetEn[i], new LinkedList<string> { });
         }
 
-
-
         Queue<string> lastNames = new Queue<string>();
         lastNames.Enqueue("John");
         lastNames.Enqueue("jen");
@@ -25,14 +22,11 @@ public class Program
         lastNames.Enqueue("A");
         lastNames.Enqueue("sunny");
 
-        var program = new Program();
         while (lastNames.Count > 0)
         {
             var name = lastNames.Dequeue();
-            program.FindDictionaryEntry(ref namesDictionary, name);
+            FindDictionaryEntry(ref namesDictionary, name);
         }
-
-
 
         foreach (KeyValuePair<char, LinkedList<string>> entry in namesDictionary)
         {
@@ -47,13 +41,11 @@ public class Program
         }
     }
 
-
-    public void FindDictionaryEntry(ref Dictionary<char, LinkedList<string>> dictionary, string name)
+    public static void FindDictionaryEntry(ref Dictionary<char, LinkedList<string>> dictionary, string name)
     {
         var firstChar = name.FirstOrDefault();
         firstChar = Char.ToLower(firstChar);
 
         dictionary[firstChar].AddLast(name);
     }
-
 }

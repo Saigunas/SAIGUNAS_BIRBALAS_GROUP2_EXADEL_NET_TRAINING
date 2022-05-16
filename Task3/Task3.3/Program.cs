@@ -1,10 +1,8 @@
 ﻿using System;
 public class Program
 {
-
     protected class BracketPair
     {
-
         private char _openBracket;
         public char OpenBracket { get { return _openBracket; } }
 
@@ -16,13 +14,10 @@ public class Program
             this._openBracket = openBracket;
             this._closedBracket = closedBracket;
         }
-
     }
-
 
     public static void Main(string[] args)
     {
-
         Console.WriteLine("Type the text you want to be inspected:");
         string textToInspect = Console.ReadLine();
 
@@ -30,16 +25,12 @@ public class Program
         string squareBrackets = "[]";
         string curlyBrackets = "{}";
 
-
         var listOfBracketsToCheck = new List<BracketPair>();
         listOfBracketsToCheck.Add(new BracketPair(roundBrackets[0], roundBrackets[1]));
         listOfBracketsToCheck.Add(new BracketPair(squareBrackets[0], squareBrackets[1]));
         listOfBracketsToCheck.Add(new BracketPair(curlyBrackets[0], curlyBrackets[1]));
 
-
-
         var program = new Program();
-
 
         string bracketsAllowed = "";
         foreach (var brackets in listOfBracketsToCheck)
@@ -48,7 +39,6 @@ public class Program
         }
  
         string filteredText = program.FilterString(textToInspect, bracketsAllowed);
-
 
         bool isTextCorrect = true;
         foreach(var brackets in listOfBracketsToCheck)
@@ -61,9 +51,7 @@ public class Program
         }
 
         program.PrintText(filteredText, isTextCorrect);
-
     }
-
 
     public void PrintText(string filteredText, bool isTextCorrect)
     {
@@ -92,7 +80,6 @@ public class Program
         {
             char c = textCharacters[i];
 
-
             if (c == bracketsToCheck.OpenBracket)
             {
                 timesOpenBracketUsed++;
@@ -108,9 +95,7 @@ public class Program
                     isTextCorrect = false;
                     return isTextCorrect;
                 }
-
             }
-
         }
 
         //if isTextCorrect == true that means all the brackets have all correct pairs
@@ -118,7 +103,6 @@ public class Program
         {
             isTextCorrect = false;
         }
-
 
         //Iterate over the text once again to find the pairs and
         //check inside of the bracket pair, so { ( } ) results to false
@@ -156,7 +140,6 @@ public class Program
                     unresolvedBracketIndexes.RemoveAt(unresolvedBracketIndexes.Count - 1);
                 }
             }
-
         }
 
         return isTextCorrect;
