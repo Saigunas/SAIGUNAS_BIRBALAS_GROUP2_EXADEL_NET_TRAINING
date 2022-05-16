@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task3.1", "Task3.1\Task3.1.csproj", "{0A1E6D7E-E103-4FFD-B142-E6CEF6C767FD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task3.2", "Task3.2\Task3.2.csproj", "{68630390-0AC5-4FBC-8836-B966BB81A2D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task3.3", "Task3.3\Task3.3.csproj", "{3224A74C-B06F-4BE8-A1BD-963D95F30994}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0A1E6D7E-E103-4FFD-B142-E6CEF6C767FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A1E6D7E-E103-4FFD-B142-E6CEF6C767FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A1E6D7E-E103-4FFD-B142-E6CEF6C767FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A1E6D7E-E103-4FFD-B142-E6CEF6C767FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68630390-0AC5-4FBC-8836-B966BB81A2D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68630390-0AC5-4FBC-8836-B966BB81A2D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68630390-0AC5-4FBC-8836-B966BB81A2D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68630390-0AC5-4FBC-8836-B966BB81A2D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3224A74C-B06F-4BE8-A1BD-963D95F30994}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3224A74C-B06F-4BE8-A1BD-963D95F30994}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3224A74C-B06F-4BE8-A1BD-963D95F30994}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3224A74C-B06F-4BE8-A1BD-963D95F30994}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BF9D0546-64D9-4650-A6E3-30D42679CAAF}
+	EndGlobalSection
+EndGlobal
