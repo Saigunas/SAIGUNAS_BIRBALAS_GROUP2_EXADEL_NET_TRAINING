@@ -1,12 +1,12 @@
 ﻿CREATE TABLE [dbo].[Student] (
-    [Id]          INT            IDENTITY (1, 1) NOT NULL,
+    [Id] INT NOT NULL PRIMARY KEY IDENTITY (1, 1), 
+    [ClassId]     INT   NOT NULL,
     [FirstName]   NVARCHAR (50)  NOT NULL,
     [LastName]    NVARCHAR (50)  NOT NULL,
     [PhoneNumber] INT            NOT NULL,
-    [Address]     NVARCHAR (MAX) NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
+    [Address]     NVARCHAR (50) NOT NULL,
+	CONSTRAINT [FK_Student_Class] FOREIGN KEY ([ClassId]) REFERENCES [dbo].[Class] ([Id]) ON DELETE CASCADE
 );
-
 
 GO
 CREATE UNIQUE NONCLUSTERED INDEX [IX_Student_LastName]

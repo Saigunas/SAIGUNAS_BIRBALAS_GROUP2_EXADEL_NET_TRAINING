@@ -8,13 +8,8 @@ AS
 BEGIN
 	BEGIN TRY
 		DECLARE @StudentId nvarchar(50)
-		INSERT INTO Student (FirstName, LastName, PhoneNumber, Address)
-		VALUES (@FirstName, @LastName, @PhoneNumber, @Address)
-
-		SELECT @StudentId = Student.Id FROM Student WHERE id = SCOPE_IDENTITY()
-
-		INSERT INTO StudentClassRelation (StudentID, ClassID)
-		VALUES (@StudentId, @ClassId)
+		INSERT INTO Student (ClassId, FirstName, LastName, PhoneNumber, Address)
+		VALUES (@ClassId, @FirstName, @LastName, @PhoneNumber, @Address)
 	END TRY
 	BEGIN CATCH
 		PRINT 'Error: Failed to add a student.'
