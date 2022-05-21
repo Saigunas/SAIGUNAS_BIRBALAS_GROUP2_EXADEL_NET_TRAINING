@@ -76,10 +76,6 @@
     <Build Include="School\Stored Procedures\DeleteStudent.sql" />
     <Build Include="School\Triggers\AddStudent_Trigger.sql" />
     <PostDeploy Include="School\Script.PostDeployment1.sql" />
-    <Build Include="School\Stored Procedures\CreateClasses.sql" />
-    <Build Include="School\Stored Procedures\CreateSubjects.sql" />
-    <Build Include="School\Stored Procedures\CreateStudents.sql" />
-    <Build Include="School\Stored Procedures\CreateClassSubject.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Task4.1.refactorlog" />
