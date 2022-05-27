@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Roman",
+    "surname": "Terehovich",
+    "age": 15,
+    "city": "Pinsk"
+  },
+  {
+    "name": "Tobias",
+    "surname": "Weber",
+    "age": 80,
+    "city": "Belefield"
+  },
+  {
+    "name": "Carmen",
+    "surname": "Morales",
+    "age": 27,
+    "city": "Ronda"
+  },
+  {
+    "name": "Manon",
+    "surname": "Laurent",
+    "age": 34,
+    "city": "Toulouse"
+  },
+  {
+    "name": "Luc",
+    "surname": "Janssens",
+    "age": 50,
+    "city": "Leuven"
+  },
+  {
+    "name": "Leon",
+    "surname": "Wagner",
+    "age": 16,
+    "city": "Belefield"
+  }
+]
