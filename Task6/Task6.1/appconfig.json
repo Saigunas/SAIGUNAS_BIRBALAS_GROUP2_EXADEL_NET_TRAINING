@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "myDbConn": "Server=(localdb)\\mssqllocaldb;Database=School_6;Trusted_Connection=True;"
+  }
+}
