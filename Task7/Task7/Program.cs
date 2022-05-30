@@ -5,6 +5,7 @@ using System.Data;
 using System.Collections;
 using System.Collections.Generic;
 using Task5.DataAccessLayer.Persistence;
+using Task5.DataAccessLayer.Core.Domain;
 
 public class Program
 {
@@ -12,6 +13,14 @@ public class Program
     {
         using (var unitOfWork = new UnitOfWork(new SchoolContext()))
         {
+
+            var newClass = new Class();
+            newClass.Number = 5;
+            newClass.Letter = "b";
+
+            unitOfWork.Classes.Add(newClass);
+            unitOfWork.Classes.Remove(newClass);
+
             bool showMenu = true;
             while (showMenu)
             {

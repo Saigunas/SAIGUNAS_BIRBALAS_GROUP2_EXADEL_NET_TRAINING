@@ -22,7 +22,7 @@ namespace Task5.DataAccessLayer.Persistence
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=School_7;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("data source=.\\SQLEXPRESS;Database=School_7;Trusted_Connection=True;");
         }
     }
 }
