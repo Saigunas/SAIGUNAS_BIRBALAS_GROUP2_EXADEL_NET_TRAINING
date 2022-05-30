@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Task5.Migrations
 {
-    [DbContext(typeof(DataAccessLayer.Persistence.SchoolContext))]
+    [DbContext(typeof(SchoolContext))]
     [Migration("20220521103958_AddStudentDateOfBirth")]
     partial class AddStudentDateOfBirth
     {
