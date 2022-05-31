@@ -5,6 +5,8 @@ using System.Data;
 using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
+using Task6.Models;
+using Task6;
 
 public class Program
 {
@@ -127,61 +129,6 @@ public class Program
             Console.WriteLine($"Subject Id: {subject.Id}");
             Console.WriteLine($"Subject name: {subject.Name}");
         });
-    }
-
-}
-
-public class Student
-{
-    public int Id { get; set; }
-    public int ClassId { get; set; }
-    public virtual Class Class { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public int PhoneNumber { get; set; }
-    public string Address { get; set; }
-    public DateTime DateOfBirth { get; set; }
-}
-
-public class Subject
-{
-    public int Id { get; set; }
-    public string Name { get; set; }
-}
-
-public class Class
-{
-    public int Id { get; set; }
-    public int Number { get; set; }
-    public string Letter { get; set; }
-}
-
-public class ClassSubject
-{
-    public int Id { get; set; }
-    public int StudentId { get; set; }
-    public virtual Class Class { get; set; }
-    public int SubjectId { get; set; }
-    public virtual Subject Subject { get; set; }
-}
-
-public class SchoolContext : DbContext
-{
-    public SchoolContext()
-    {
-        Database.EnsureCreated();
-    }
-
-    public DbSet<Student> Students { get; set; }
-    public DbSet<Class> Classes { get; set; }
-    public DbSet<Subject> Subjects { get; set; }
-    public DbSet<ClassSubject> ClassSubjects { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        var config = new ConfigurationBuilder()
-        .AddJsonFile("appconfig.json", optional: false).Build();
-        optionsBuilder.UseSqlServer(config.GetConnectionString("myDbConn"));
     }
 
 }
