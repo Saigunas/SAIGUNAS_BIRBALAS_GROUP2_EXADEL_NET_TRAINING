@@ -14,14 +14,14 @@ using Task7.DataAccessLayer.Persistence.StudentServices;
 
 public partial class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var container = ContainerConfigure();
 
         using(var scope = container.BeginLifetimeScope())
         {
             var app = scope.Resolve<IApplication>();
-            app.Run();
+            await app.Run();
         }
     }
 

@@ -15,7 +15,7 @@ namespace Task7.DataAccessLayer.Persistence.Services
             _getFullInfoService = getFullInfoService;
             _getLastNameService = getLastNameService;
         }
-        public string AskForOption(UnitOfWork unitOfWork)
+        public async Task<string> AskForOption(UnitOfWork unitOfWork)
         {
             IInfoStringFormatterService studentInfo = null;
             Student student = null;
@@ -29,18 +29,6 @@ namespace Task7.DataAccessLayer.Persistence.Services
                 Console.WriteLine("3. Exit");
 
                 int selection = Convert.ToInt32(Console.ReadLine());
-
-                Console.Write("Enter The Id: ");
-
-                int studentId = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine();
-
-                student = unitOfWork.Students.Get(studentId);
-                if (student == null)
-                {
-                    Console.WriteLine("Wrong student id");
-                    continue;
-                }
 
                 switch (selection)
                 {
@@ -58,10 +46,23 @@ namespace Task7.DataAccessLayer.Persistence.Services
                         }
                     case 3:
                         showMenu = false;
-                        break;
+                        return "";
                     default:
                         Console.WriteLine("Wrong choice");
-                        break;
+                        continue;
+                }
+
+                Console.Write("Enter The Id: ");
+
+                int studentId = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine();
+
+                student = await unitOfWork.Students.GetAsync(studentId);
+                if (student == null)
+                {
+                    Console.WriteLine("Wrong student id");
+                    showMenu = true;
+                    continue;
                 }
             }
             return studentInfo.GetInfoString(student);

@@ -4,6 +4,6 @@ namespace Task7
 {
     public interface IGetStudentsInfoService
     {
-        void GetInfo(UnitOfWork unitOfWork);
+        Task GetInfo(UnitOfWork unitOfWork);
     }
 }

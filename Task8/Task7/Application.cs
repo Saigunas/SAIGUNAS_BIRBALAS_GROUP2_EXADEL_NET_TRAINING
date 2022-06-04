@@ -18,12 +18,12 @@ namespace Task7
             _getStudentsInfoService = getStudentsInfoService;
         }
 
-        public void Run()
+        public async Task Run()
         {
             using (var unitOfWork = new UnitOfWork(new SchoolContext()))
             {
                 PopulateTableForTask7_2(unitOfWork);
-                _getStudentsInfoService.GetInfo(unitOfWork);
+                await _getStudentsInfoService.GetInfo(unitOfWork);
             }
         }
 
@@ -33,7 +33,7 @@ namespace Task7
             newClass.Number = 5;
             newClass.Letter = "b";
 
-            unitOfWork.Classes.Add(newClass);
+            unitOfWork.Classes.AddAsync(newClass);
 
             var newStudent = new Student();
             newStudent.FirstName = "Morgana";
@@ -43,7 +43,7 @@ namespace Task7
             newStudent.DateOfBirth = new DateTime(1987, 7, 15, 10, 39, 30);
             newStudent.ClassId = 1;
 
-            unitOfWork.Students.Add(newStudent);
+            unitOfWork.Students.AddAsync(newStudent);
 
             unitOfWork.Save();
         }

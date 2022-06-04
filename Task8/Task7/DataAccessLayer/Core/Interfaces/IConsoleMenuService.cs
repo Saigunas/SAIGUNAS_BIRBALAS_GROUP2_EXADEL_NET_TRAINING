@@ -4,6 +4,6 @@ namespace Task7.DataAccessLayer.Persistence.Services
 {
     public interface IConsoleMenuService
     {
-        string AskForOption(UnitOfWork unitOfWork);
+        Task<string> AskForOption(UnitOfWork unitOfWork);
     }
 }

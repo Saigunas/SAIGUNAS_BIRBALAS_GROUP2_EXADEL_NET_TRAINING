@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Task5.DataAccessLayer.Core.Domain;
 using Task5.DataAccessLayer.Persistence.Repositories;
-using Task5.DataAccessLayer.Repositories;
 
 namespace Task5.DataAccessLayer.Persistence
 {
@@ -14,18 +13,17 @@ namespace Task5.DataAccessLayer.Persistence
         private readonly SchoolContext _context;
         public IRepository<Class> Classes;
         public IRepository<Student> Students;
+        public IRepository<Subject> Subjects;
         public IRepository<ClassSubject> ClassSubjects;
 
         public UnitOfWork(SchoolContext context)
         {
             _context = context;
-            Subjects = new SubjectRepository(_context);
+            Subjects = new Repository<Subject>(_context);
             Classes = new Repository<Class>(_context);
             Students = new Repository<Student>(_context);
             ClassSubjects = new Repository<ClassSubject>(_context);
         }
-
-        public ISubjectRepository Subjects { get; private set; }
 
         public int Save()
         {

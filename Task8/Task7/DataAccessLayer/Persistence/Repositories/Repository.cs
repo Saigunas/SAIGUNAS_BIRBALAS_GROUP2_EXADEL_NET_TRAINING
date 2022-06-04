@@ -19,14 +19,16 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
             EntitySet = context.Set<TEntity>();
         }
 
-        public TEntity Get(int id)
+        public async Task<TEntity> GetAsync(int id)
         {
-            return EntitySet.Find(id);
+            var entity = await EntitySet.FindAsync(id);
+            return entity;
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return EntitySet.ToList();
+            var entity = await EntitySet.ToListAsync();
+            return entity;
         }
 
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
@@ -34,9 +36,9 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
             return EntitySet.Where(predicate);
         }
 
-        public void Add(TEntity entity)
+        public async Task AddAsync(TEntity entity)
         {
-            EntitySet.Add(entity);
+            await EntitySet.AddAsync(entity);
         }
 
         public void Remove(TEntity entity)
