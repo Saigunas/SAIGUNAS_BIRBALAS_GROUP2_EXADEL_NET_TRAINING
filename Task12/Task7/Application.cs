@@ -20,10 +20,10 @@ namespace Task7
 
         public async Task Run()
         {
-            using (var unitOfWork = new UnitOfWork(new SchoolContext()))
+            using (var unitOfWork = new UnitOfWork(new SchoolContext("data source=.\\SQLEXPRESS;Database=School_7;Trusted_Connection=True;")))
             {
                 PopulateTableForTask7_2(unitOfWork);
-                await _getStudentsInfoService.GetInfo(unitOfWork);
+                Console.WriteLine(await _getStudentsInfoService.GetInfo(unitOfWork));
             }
         }
 

@@ -10,19 +10,22 @@ namespace Task5.DataAccessLayer.Persistence
 {
     public class SchoolContext : DbContext
     {
-        public SchoolContext()
+        public SchoolContext(string connectionString) : base(GetOptions(connectionString))
         {
             Database.EnsureCreated();
         }
-
+        private static DbContextOptions GetOptions(string connectionString)
+        {
+            return SqlServerDbContextOptionsExtensions.UseSqlServer(new DbContextOptionsBuilder(), connectionString).Options;
+        }
         public DbSet<Student> Students { get; set; }
         public DbSet<Class> Classes { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<ClassSubject> ClassSubjects { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+/*        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("data source=.\\SQLEXPRESS;Database=School_7;Trusted_Connection=True;");
-        }
+        }*/
     }
 }

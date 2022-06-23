@@ -12,9 +12,9 @@ namespace Task7
             _consoleMenuService = consoleMenuService;
         }
 
-        public async Task GetInfo(UnitOfWork unitOfWork)
+        public async Task<string> GetInfo(UnitOfWork unitOfWork)
         {
-           Console.WriteLine(await _consoleMenuService.AskForOption(unitOfWork));
+           return await _consoleMenuService.AskForOption(unitOfWork);
         }
     }
 }
