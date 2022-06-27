@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Task13.GlobalErrorHandler;
 using Task13.Models;
 
 namespace Task13.Controllers
@@ -17,7 +18,7 @@ namespace Task13.Controllers
         }
 
         [HttpGet(Name = "GetProducts")]
-        public async Task<List<Product>> GetProducts()
+        public async Task<string> GetProducts()
         {
             var products = await db.GetProductsAsync();
             return products;
@@ -37,10 +38,10 @@ namespace Task13.Controllers
             return new NoContentResult();
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProduct(Guid id)
+        [HttpDelete]
+        public async Task<IActionResult> DeleteProductsWithoutFeatures()
         {
-            await db.DeleteProductAsync(id);
+            await db.DeleteProductsWithoutFeaturesAsync();
             return new NoContentResult();
         }
     }

@@ -8,6 +8,6 @@ namespace Task13.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
         public AuditInfo AuditInfo { get; set; }
-        public IEnumerable<string> Features { get; set; }
+        public IEnumerable<string>? Features { get; set; }
     }
 }

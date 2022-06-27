@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
+using Task13.GlobalErrorHandler;
 using Task13.Models;
 
 namespace Task13
@@ -20,10 +21,18 @@ namespace Task13
             collection.InsertMany(records);
         }
 
-        public async Task<List<Product>> GetProductsAsync()
+        public async Task<string> GetProductsAsync()
         {
             var collection = db.GetCollection<Product>("Products");
-            return (await collection.FindAsync(new BsonDocument())).ToList();
+            var filter = Builders<Product>.Filter.Empty;
+            var projection = Builders<Product>.Projection
+                .Include(x => x.Name);
+
+            var projectionResults = await collection.Find(filter)
+                .Project(projection)
+                .ToListAsync();
+
+            return projectionResults.ToJson();
         }
 
         public List<Product> GetUpdatedProducts()
@@ -44,11 +53,16 @@ namespace Task13
             var personUpdateResult = await collection.UpdateOneAsync(filter, update);
         }
 
-        public async Task DeleteProductAsync(Guid id)
+        public async Task DeleteProductsWithoutFeaturesAsync()
         {
             var collection = db.GetCollection<Product>("Products");
-            var filter = Builders<Product>.Filter.Eq("Id", id);
-            await collection.DeleteOneAsync(filter);
+
+            var filterNoArray = Builders<Product>.Filter.Eq(x => x.Features, null);
+            var filterEmptyArray = Builders<Product>.Filter.Size("Features", 0);
+
+            var filter = Builders<Product>.Filter.Or(filterEmptyArray, filterNoArray);
+
+            await collection.DeleteManyAsync(filter);
         }
     }
 }
