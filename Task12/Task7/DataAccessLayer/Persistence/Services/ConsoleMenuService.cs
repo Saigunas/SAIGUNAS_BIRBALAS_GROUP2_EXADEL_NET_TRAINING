@@ -2,6 +2,7 @@
 using Task5.DataAccessLayer.Core.Domain;
 using Task7.DataAccessLayer.Core.Interfaces;
 using Task7.DataAccessLayer.Persistence.StudentServices;
+using Task5.DataAccessLayer;
 
 namespace Task7.DataAccessLayer.Persistence.Services
 {
@@ -15,12 +16,12 @@ namespace Task7.DataAccessLayer.Persistence.Services
             _getFullInfoService = getFullInfoService;
             _getLastNameService = getLastNameService;
         }
-        public async Task<string> AskForOption(UnitOfWork unitOfWork)
+        public async Task<string> AskForOption(IUnitOfWork unitOfWork)
         {
             IInfoStringFormatterService studentInfo = null;
-            Student student = null;
 
             bool showMenu = true;
+
             while (showMenu)
             {
                 int selection = AskForService();
@@ -46,17 +47,12 @@ namespace Task7.DataAccessLayer.Persistence.Services
                         Console.WriteLine("Wrong choice");
                         continue;
                 }
-
-                int studentId = AskForId();
-                Console.WriteLine();
-
-                student = await unitOfWork.Students.GetAsync(studentId);
-                if (student == null)
-                {
-                    throw new NullReferenceException();
-                }
             }
-            return studentInfo.GetInfoString(student);
+
+            int studentId = AskForId();
+            Console.WriteLine();
+
+            return await studentInfo.GetInfoString(studentId, unitOfWork);
         }
 
         public virtual int AskForService()
@@ -76,6 +72,7 @@ namespace Task7.DataAccessLayer.Persistence.Services
             Console.Write("Enter The Id: ");
 
             int studentId = Convert.ToInt32(Console.ReadLine());
+
             return studentId;
         }
 
