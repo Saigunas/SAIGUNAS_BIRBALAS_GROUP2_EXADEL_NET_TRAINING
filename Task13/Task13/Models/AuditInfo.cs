@@ -7,7 +7,7 @@ namespace Task13.Models
     {
         [BsonId]
         public Guid Id { get; set; }
-        public DateTime DateTime { get; set; }
+        public DateTime CreatedOn { get; set; }
         [DefaultValue(1)]
         public int Version { get; set; } = 1;
     }

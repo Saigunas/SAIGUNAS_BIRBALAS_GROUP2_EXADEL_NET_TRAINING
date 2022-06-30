@@ -13,7 +13,7 @@ namespace Task13.Controllers
         [HttpPost]
         public IActionResult CreateProducts(List<Product> products)
         {
-            db.InsertProducts("Products", products);
+            db.InsertProducts(products);
             return CreatedAtRoute(GetProducts(), products);
         }
 

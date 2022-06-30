@@ -15,9 +15,13 @@ namespace Task13
             db = client.GetDatabase(database);
         }
 
-        public void InsertProducts(string table, List<Product> records)
+        public void InsertProducts(List<Product> records)
         {
             var collection = db.GetCollection<Product>("Products");
+            foreach (var record in records)
+            {
+                record.AuditInfo.CreatedOn = DateTime.Now;
+            }
             collection.InsertMany(records);
         }
 
@@ -26,7 +30,8 @@ namespace Task13
             var collection = db.GetCollection<Product>("Products");
             var filter = Builders<Product>.Filter.Empty;
             var projection = Builders<Product>.Projection
-                .Include(x => x.Name);
+                .Include(x => x.Name)
+                .Include(x => x.Id);
 
             var projectionResults = await collection.Find(filter)
                 .Project(projection)
@@ -38,7 +43,7 @@ namespace Task13
         public List<Product> GetUpdatedProducts()
         {
             var collection = db.GetCollection<Product>("Products");
-            var filter = Builders<Product>.Filter.Gt("AuditInfo.Version", 1);
+            var filter = Builders<Product>.Filter.Gt(x => x.AuditInfo.Version, 1);
             return collection.Find(filter).Sort(Builders<Product>.Sort.Descending("AuditInfo.Version")).ToList();
         }
 
@@ -50,7 +55,7 @@ namespace Task13
                 .Set(x => x.Name, name)
                 .Inc(x => x.AuditInfo.Version, 1);
 
-            var personUpdateResult = await collection.UpdateOneAsync(filter, update);
+            await collection.UpdateOneAsync(filter, update);
         }
 
         public async Task DeleteProductsWithoutFeaturesAsync()
